@@ -4,18 +4,17 @@
  */
 package proyectoprogra;
 
-/**
- *
- * @author Eliver Salazar Campo
- */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SistemaUsuarios extends JFrame {
-    private Usuario[] usuarios = new Usuario[100]; // Array para almacenar usuarios, solo se pueden 100 usuarios
-    private int usuariosRegistrados = 0; // Contador de usuarios registrados
+    private Usuario[] usuarios = new Usuario[100];
+    private int usuariosRegistrados = 0;
+
+    private JTextField loginUsuarioField;
+    private JPasswordField loginPasswordField;
 
     public SistemaUsuarios() {
         setTitle("Sistema de Usuarios");
@@ -38,8 +37,8 @@ public class SistemaUsuarios extends JFrame {
         JButton registroButton = new JButton("Registrar");
 
         // Componentes para el inicio de sesión
-        JTextField loginUsuarioField = new JTextField(20);
-        JPasswordField loginPasswordField = new JPasswordField(20);
+        loginUsuarioField = new JTextField(20);
+        loginPasswordField = new JPasswordField(20);
         JButton loginButton = new JButton("Iniciar Sesión");
 
         // Botón para cambiar al formulario de inicio de sesión desde el registro
@@ -64,7 +63,7 @@ public class SistemaUsuarios extends JFrame {
         registroPanel.add(new JLabel("")); // Espacio en blanco para alinear el botón
         registroPanel.add(registroButton);
         registroPanel.add(new JLabel("")); // Espacio en blanco
-        registroPanel.add(switchToLoginButton);        
+        registroPanel.add(switchToLoginButton);
 
         // Agregar componentes al panel de inicio de sesión
         loginPanel.add(new JLabel("Usuario:"));
@@ -80,42 +79,39 @@ public class SistemaUsuarios extends JFrame {
         setLayout(new CardLayout());
         add(registroPanel, "registro");
         add(loginPanel, "login");
-        
-        // Botón para consultar usuarios
-JButton consultarUsuariosButton = new JButton("Consultar Usuarios");
-registroPanel.add(new JLabel("")); // Espacio en blanco
-registroPanel.add(consultarUsuariosButton);
 
+        // Botón para consultar usuarios
+        JButton consultarUsuariosButton = new JButton("Consultar Usuarios");
+        registroPanel.add(new JLabel("")); // Espacio en blanco
+        registroPanel.add(consultarUsuariosButton);
 
         // Acción al presionar el botón de consultar usuarios
         consultarUsuariosButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            
-        // Mostrar la lista de usuarios registrados en una nueva ventana o diálogo
-        JFrame listaUsuariosFrame = new JFrame("Lista de Usuarios");
-        JTextArea listaUsuariosTextArea = new JTextArea();
-        listaUsuariosTextArea.setEditable(false);
+            public void actionPerformed(ActionEvent e) {
+                // Mostrar la lista de usuarios registrados en una nueva ventana o diálogo
+                JFrame listaUsuariosFrame = new JFrame("Lista de Usuarios");
+                JTextArea listaUsuariosTextArea = new JTextArea();
+                listaUsuariosTextArea.setEditable(false);
 
-        for (int i = 0; i < usuariosRegistrados; i++) {
-            Usuario usuario = usuarios[i];
-            listaUsuariosTextArea.append("Nombre: " + usuario.getNombre() + "\n");
-            listaUsuariosTextArea.append("Apellidos: " + usuario.getApellidos() + "\n");
-            listaUsuariosTextArea.append("Usuario: " + usuario.getUsuario() + "\n");
-            listaUsuariosTextArea.append("Estado: " + usuario.getEstado() + "\n");
-            listaUsuariosTextArea.append("Correo: " + usuario.getCorreo() + "\n");
-            listaUsuariosTextArea.append("----------------------------------------\n");
-            }
+                for (int i = 0; i < usuariosRegistrados; i++) {
+                    Usuario usuario = usuarios[i];
+                    listaUsuariosTextArea.append("Nombre: " + usuario.getNombre() + "\n");
+                    listaUsuariosTextArea.append("Apellidos: " + usuario.getApellidos() + "\n");
+                    listaUsuariosTextArea.append("Usuario: " + usuario.getUsuario() + "\n");
+                    listaUsuariosTextArea.append("Estado: " + usuario.getEstado() + "\n");
+                    listaUsuariosTextArea.append("Correo: " + usuario.getCorreo() + "\n");
+                    listaUsuariosTextArea.append("----------------------------------------\n");
+                }
 
-            JScrollPane scrollPane = new JScrollPane(listaUsuariosTextArea);
-            listaUsuariosFrame.add(scrollPane);
-            listaUsuariosFrame.setSize(400, 300);
-            listaUsuariosFrame.setVisible(true);
+                JScrollPane scrollPane = new JScrollPane(listaUsuariosTextArea);
+                listaUsuariosFrame.add(scrollPane);
+                listaUsuariosFrame.setSize(400, 300);
+                listaUsuariosFrame.setVisible(true);
             }
         });
 
-
         // Acción al presionar el botón de registro
-            registroButton.addActionListener(new ActionListener() {
+        registroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Capturar los datos del usuario y registrarlos
                 String nombre = nombreField.getText();
@@ -133,44 +129,48 @@ registroPanel.add(consultarUsuariosButton);
                     usuarios[usuariosRegistrados] = nuevoUsuarioObj;
                     usuariosRegistrados++;
 
-                // Limpia los campos después del registro
-                nombreField.setText("");
-                apellidosField.setText("");
-                usuarioField.setText("");
-                passwordField.setText("");
-                estadoField.setText("");
-                correoField.setText("");
-            } else {
+                    // Limpia los campos después del registro
+                    nombreField.setText("");
+                    apellidosField.setText("");
+                    usuarioField.setText("");
+                    passwordField.setText("");
+                    estadoField.setText("");
+                    correoField.setText("");
+                } else {
                     // Manejar el caso de superar la capacidad máxima de usuarios
+                    JOptionPane.showMessageDialog(null, "Se ha alcanzado la capacidad máxima de usuarios.",
+                            "Capacidad Máxima Alcanzada", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
-        
+
         // Acción al presionar el botón de inicio de sesión
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
                 // Capturar los datos del inicio de sesión
                 String usuario = loginUsuarioField.getText();
                 String password = new String(loginPasswordField.getPassword());
-                
-                // Verificar las credenciales del usuario y realizar la autenticación
-                for (int i = 0; i < usuariosRegistrados; i++) {
-                    if (usuarios[i].getUsuario().equals(usuario) && usuarios[i].getPassword().equals(password)) {
-                        // Usuario autenticado
-                        Usuario usuarioAutenticado = usuarios[i];
-                        
-                        // Limpia los campos después del inicio de sesión
-                        loginUsuarioField.setText("");
-                        loginPasswordField.setText("");
-                        // Realiza acciones específicas al autenticar, como mostrar un mensaje o redirigir
-                        // a otra ventana, según tus necesidades.
-                        return;
-                    }
 
+                // Intentar autenticar al usuario
+                Usuario usuarioAutenticado = autenticarUsuario(usuario, password);
+
+                if (usuarioAutenticado != null) {
+                    // Usuario autenticado
+                    // Muestra un mensaje de "Sesión iniciada"
+                    JOptionPane.showMessageDialog(null, "Sesión iniciada", "Inicio de Sesión Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        
+                    loginUsuarioField.setText("");
+                    loginPasswordField.setText("");
+                } else {
+                    // Manejo del caso de credenciales incorrectas
+                    JOptionPane.showMessageDialog(null, "Credenciales incorrectas. Por favor, inténtelo de nuevo.",
+                            "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+                    loginPasswordField.setText("");
                 }
             }
         });
+
+         
 
         // Acción al presionar el botón para cambiar al formulario de inicio de sesión desde el registro
         switchToLoginButton.addActionListener(new ActionListener() {
@@ -188,6 +188,17 @@ registroPanel.add(consultarUsuariosButton);
             }
         });
     }
+    // Método para autenticar un usuario
+        private Usuario autenticarUsuario(String usuario, String password) {
+            for (int i = 0; i < usuariosRegistrados; i++) {
+            if (usuarios[i].getUsuario().equals(usuario)) {
+                if (usuarios[i].verificarPassword(password)) {
+                    return usuarios[i];
+                }
+            }
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -197,3 +208,5 @@ registroPanel.add(consultarUsuariosButton);
         });
     }
 }
+
+
