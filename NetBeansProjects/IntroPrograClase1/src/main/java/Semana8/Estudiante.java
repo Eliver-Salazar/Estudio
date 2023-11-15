@@ -1,6 +1,7 @@
 
 package SEM08;
 
+import SEM06.Cedula;
 import static SEM08.Estados.Activo;
 import javax.swing.JOptionPane;
 
@@ -9,7 +10,8 @@ import javax.swing.JOptionPane;
  * @author mbp_jay
  */
 public class Estudiante {
-    private int Cedula;
+    private Cedula cedula;
+    private int edad;
     private String nombre;
     private String apellidos;
     private String marcas[];
@@ -185,6 +187,64 @@ public class Estudiante {
         for(int posicion = 0; posicion<100; posicion++){
             numeros[posicion] = posicion;
         }
+    }
+    
+    public void EnviarSolicitudCoonesup(){
+        //logica
+        String nombreCompleto = this.nombre+this.apellidos;
+        String notas = "90, 90";
+        
+    }
+
+    public Estudiante() {
+    }
+
+    public Cedula getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(Cedula cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String[] getMarcas() {
+        return marcas;
+    }
+
+    public void setMarcas(String[] marcas) {
+        this.marcas = marcas;
+    }
+
+    public int[] getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(int[] numeros) {
+        this.numeros = numeros;
+    }
+    
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 }
 

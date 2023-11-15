@@ -8,7 +8,9 @@ package SEM06;
  *
  * @author mbp_jay
  */
-public class Configuracion {
-    public static int annio = 2023;
-    public static String sistemaOperativo = "windows";
+public enum Cedula {
+    ALAJUELA,
+    HEREDIA,
+    CARTAGO,
+    LIMON
 }

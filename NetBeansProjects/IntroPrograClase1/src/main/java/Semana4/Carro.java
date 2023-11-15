@@ -1,9 +1,14 @@
-package Semana4;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package SEM04;
 
-import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author mbp_jay
+ */
 public class Carro {
-    //Class Carro
     //atributos - caracteristicas
     String modelo;
     String marca;
@@ -33,4 +38,3 @@ public class Carro {
     //asientos
     //cinturon_seguridad
 }
-

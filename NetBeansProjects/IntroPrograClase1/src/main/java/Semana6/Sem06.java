@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Semana6;
+package SEM06;
 
 /**
  *
@@ -46,6 +46,7 @@ public class Sem06 {
 //       System.out.println(user2.imprimir());
 
        Configuracion config = new Configuracion();
+       
        //año
        System.out.println(config.annio);
        Configuracion.annio = 2024;
@@ -55,7 +56,6 @@ public class Sem06 {
        System.out.println(config.sistemaOperativo);
        Configuracion.sistemaOperativo = "Unix";
        System.out.println(config.sistemaOperativo);
-
        
     }
 }

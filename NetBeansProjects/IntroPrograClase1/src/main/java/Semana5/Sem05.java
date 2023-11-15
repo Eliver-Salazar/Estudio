@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Semana5;
+package SEM05;
 
 /**
  *
- * @author Eliver Salazar Campo
+ * @author mbp_jay
  */
 public class Sem05 {
     public static void main(String[] args){
@@ -15,5 +15,4 @@ public class Sem05 {
         estudiante.ImprimeEnConsola("Creditos restantes: "+ estudiante.CalcularCreditosRestantes());
         estudiante.ImprimeEnConsola("Estimacion de cuatrimestres restantes: "+estudiante.CalculaCuatrimestresRestantes());
     }
-    
 }

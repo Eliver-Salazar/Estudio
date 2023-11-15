@@ -1,10 +1,16 @@
-package Semana4;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package SEM04;
 
 import javax.swing.JOptionPane;
 
-public class Bannio{
-    
-    //Class Baño
+/**
+ *
+ * @author mbp_jay
+ */
+public class Bannio {
     boolean espejo=true;
     boolean escuzado = true; 
     boolean ducha = true;
@@ -14,12 +20,14 @@ public class Bannio{
     int shampoo = 100;
     int jabon = 50;
     
-    public void Lavarse_dientes(){
+    public void Lavarse_dientes(int dientes){
         if(this.usosPastaDental<0){
             JOptionPane.showMessageDialog(null, "SE acabó la pasta dental.");
         }else{
             this.usosPastaDental--;
         }
+        
+        JOptionPane.showMessageDialog(null, "Se lava los"+ dientes+" dientes.");
     }
     
     public void Banniarse(){
@@ -38,4 +46,3 @@ public class Bannio{
         
     }
 }
-
