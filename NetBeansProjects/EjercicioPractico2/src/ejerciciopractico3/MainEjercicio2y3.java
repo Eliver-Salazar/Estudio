@@ -36,7 +36,7 @@ public class MainEjercicio2y3 {
 
         // Imprimir solo los números pares utilizando la clase MainEjercicio2y3
         System.out.println("\nNúmeros pares del mes:");
-        NumerosPares.imprimirNumerosPares(diasDelMes);
+        NumerosImpares.imprimirNumerosImpares(diasDelMes);
     }
 }
 

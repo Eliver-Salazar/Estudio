@@ -10,7 +10,7 @@ package ejerciciopractico3;
  */
 public class GeneradorSalarios {
     
-    public static void generarSalarios(double[] salarios) {
+    public static void generarSalarios(double salarios[]) {
         for (int i = 0; i < salarios.length; i++) {
             salarios[i] = (int) (Math.random() * 5000);
         }

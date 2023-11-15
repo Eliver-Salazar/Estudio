@@ -9,7 +9,7 @@ public class MainEjercicio1 {
     public static void main(String[] args) {
         
         // Declarar y generar automáticamente los salarios
-        double salarios [] = new double[100];
+        double salarios [] = new double [100];
         GeneradorSalarios.generarSalarios(salarios);
 
         // Mostrar salarios antes de ordenar

@@ -10,7 +10,7 @@ package ejerciciopractico3;
  */
 public class MostradorSalarios {
     
-    public static void mostrarSalarios(double[] salarios) {
+    public static void mostrarSalarios(double salarios[]) {
         for (int i = 0; i < salarios.length; i++) {
             System.out.println("Empleado " + (i + 1) + ": $" + salarios[i]);
         }

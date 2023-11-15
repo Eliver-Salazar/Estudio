@@ -11,7 +11,7 @@ package ejerciciopractico3;
 public class OrdenadorSalarios {
     
     // Aplicar ordenamiento burbuja con un ciclo for
-    public static void ordenarSalariosBurbuja(double[] salarios) {
+    public static void ordenarSalariosBurbuja(double salarios[]) {
         int n = salarios.length;
 
         for (int i = 0; i < n - 1; i++) {
