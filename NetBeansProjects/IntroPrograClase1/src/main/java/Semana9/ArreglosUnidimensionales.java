@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package SEM09;
+package Semana9;
 
-import SEM06.Cedula;
-import SEM08.Estudiante;
+import Semana6.Cedula;
+import Semana8.Estudiante;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 

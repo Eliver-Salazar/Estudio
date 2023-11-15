@@ -1,8 +1,8 @@
 
-package SEM08;
+package Semana8;
 
-import SEM06.Cedula;
-import static SEM08.Estados.Activo;
+import Semana6.Cedula;
+import static Semana8.Estados.Activo;
 import javax.swing.JOptionPane;
 
 /**

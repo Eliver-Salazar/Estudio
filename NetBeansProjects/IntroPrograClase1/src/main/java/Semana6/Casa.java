@@ -1,4 +1,4 @@
-package SEM06;
+package Semana6;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
