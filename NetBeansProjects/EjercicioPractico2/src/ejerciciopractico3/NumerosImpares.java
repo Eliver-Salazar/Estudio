@@ -13,7 +13,7 @@ public class NumerosImpares {
     public static void imprimirNumerosImpares(int arreglo[][]) {
         for (int i = 0; i < arreglo.length; i++) {
             for (int j = 0; j < arreglo[i].length; j++) {
-                if (arreglo[i][j] % 2 != 0) {
+                if (arreglo[i][j] % 2 > 0) {
                     System.out.print(arreglo[i][j] + " ");
                 }
             }
