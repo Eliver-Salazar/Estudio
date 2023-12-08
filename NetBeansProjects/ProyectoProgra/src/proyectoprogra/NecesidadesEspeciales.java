@@ -3,47 +3,63 @@ package proyectoprogra;
 import javax.swing.JOptionPane;
 
 
-
 public class NecesidadesEspeciales {
-   private Espacio[] espacios;
-   private int espaciosRegistrados;
+    private Espacio[] espacios;
+    private int espaciosRegistrados;
 
-   public NecesidadesEspeciales(Espacio[] espacios, int espaciosRegistrados) {
-       this.espacios = espacios;
-       this.espaciosRegistrados = espaciosRegistrados;
-   }
+    public NecesidadesEspeciales(int maxEspacios) {
+        this.espacios = new Espacio[maxEspacios];
+        this.espaciosRegistrados = 0;
+    }
 
-   // Nuevo: Método para registrar un parqueo de necesidades especiales
-   public void registrarParqueoNecesidadesEspeciales(String tipo, int capacidad) {
-       // Crear un nuevo espacio
-       Espacio nuevoEspacio = new Espacio(espaciosRegistrados + 1, tipo, capacidad);
+    public void registrarParqueoNecesidadesEspeciales(String tipo, int capacidad) {
+        if (espaciosRegistrados < espacios.length) {
+            Espacio nuevoEspacio = new Espacio(espaciosRegistrados + 1, tipo, capacidad);
+            espacios[espaciosRegistrados] = nuevoEspacio;
+            espaciosRegistrados++;
+            ajustarNumeracionNecesidadesEspeciales();
+            JOptionPane.showMessageDialog(null, "Parqueo de necesidades especiales agregado correctamente","Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Se ha alcanzado la capacidad máxima de espacios.",
+                    "Capacidad Máxima Alcanzada", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 
-       // Agregar el nuevo espacio al array de espacios
-       if (espaciosRegistrados < espacios.length) {
-           espacios[espaciosRegistrados] = nuevoEspacio;
-           espaciosRegistrados++;
+    private void ajustarNumeracionNecesidadesEspeciales() {
+        for (int i = espaciosRegistrados - 1; i >= 0; i--) {
+            Espacio espacioActual = espacios[i];
+            if (espacioActual.getIdentificador() > espaciosRegistrados) {
+                espacioActual.setIdentificador(espacioActual.getIdentificador() + 1);
+            }
+        }
+    }
 
-           // Ajustar la numeración para dar prioridad a los parqueos de necesidades especiales
-           ajustarNumeracionNecesidadesEspeciales();
+    public void marcarEspacioComoDisponible(int idEspacio) {
+        Espacio espacio = encontrarEspacioPorId(idEspacio);
+        if (espacio != null) {
+            espacio.setEspaciosDisponibles(espacio.getCapacidad());
+            JOptionPane.showMessageDialog(null, "Espacio marcado como disponible", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Espacio no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
-           // Muestra un mensaje de éxito
-           JOptionPane.showMessageDialog(null, "Parqueo de necesidades especiales agregado correctamente","Éxito", JOptionPane.INFORMATION_MESSAGE);
-       } else {
-           // Manejar el caso de superar la capacidad máxima de espacios
-           JOptionPane.showMessageDialog(null, "Se ha alcanzado la capacidad máxima de espacios.",
-                  "Capacidad Máxima Alcanzada", JOptionPane.WARNING_MESSAGE);
-       }
-   }
+    private Espacio encontrarEspacioPorId(int idEspacio) {
+        for (int i = 0; i < espaciosRegistrados; i++) {
+            if (espacios[i].getIdentificador() == idEspacio) {
+                return espacios[i];
+            }
+        }
+        return null;
+    }
 
-   //Método para ajustar la numeración de los parqueos de necesidades especiales
-   private void ajustarNumeracionNecesidadesEspeciales() {
-       // Ajustar la numeración del resto de espacios
-       for (int i = espaciosRegistrados - 1; i >= 0; i--) {
-           Espacio espacioActual = espacios[i];
-           if (espacioActual.getIdentificador() > espaciosRegistrados) {
-               espacioActual.setIdentificador(espacioActual.getIdentificador() + 1);
-           }
-       }
-   }
+    public Espacio[] getEspacios() {
+        return espacios;
+    }
+
+    public int getEspaciosRegistrados() {
+        return espaciosRegistrados;
+    }
 }
+
 

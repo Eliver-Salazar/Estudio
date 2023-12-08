@@ -7,6 +7,7 @@ public class Espacio {
     private String tipo;
     private int capacidad;
     private int espaciosDisponibles;
+    private Usuario ocupante;  // Asumiendo que un espacio puede ser ocupado por un Usuario
 
     public Espacio(int identificador, String tipo, int capacidad) {
         this.identificador = identificador;
@@ -16,20 +17,48 @@ public class Espacio {
         this.espaciosDisponibles = capacidad;
     }
 
+    public void ocuparEspacio(Usuario usuario) throws Exception {
+        if (isActivo() && espaciosDisponibles > 0) {
+            espaciosDisponibles--;
+            ocupante = usuario;
+            System.out.println("Espacio ocupado por: " + usuario.getNombre());
+        } else {
+            throw new Exception("El espacio no está disponible.");
+        }
+    }
+
+    public void desocupar() throws Exception {
+        if (ocupante != null) {
+            espaciosDisponibles++;
+            System.out.println("Espacio desocupado. Gracias, " + ocupante.getNombre() + "!");
+            ocupante = null;
+        } else {
+            throw new Exception("El espacio ya está desocupado.");
+        }
+    }
+
     // Métodos para agregar, editar e inactivar espacios
 
-    public void editarEspacio(String tipo, int capacidad) {
-        this.tipo = tipo;
-        this.capacidad = capacidad;
-        this.espaciosDisponibles = capacidad; // Al editar, se reinicia la cantidad de espacios disponibles
+    public void editarEspacio(String tipo, int capacidad) throws Exception {
+        if (espaciosDisponibles == this.capacidad) { // Solo se puede editar si todos los espacios están disponibles
+            this.tipo = tipo;
+            this.capacidad = capacidad;
+            this.espaciosDisponibles = capacidad; // Al editar, se reinicia la cantidad de espacios disponibles
+        } else {
+            throw new Exception("No se puede editar el espacio porque no todos los espacios están disponibles.");
+        }
     }
 
-    public void inactivarEspacio() {
-        this.activo = false;
-        this.espaciosDisponibles = 0; // Cuando se inactiva, no hay espacios disponibles
+    public void inactivarEspacio() throws Exception {
+        if (espaciosDisponibles == capacidad) { // Solo se puede inactivar si todos los espacios están disponibles
+            this.activo = false;
+            this.espaciosDisponibles = 0; // Cuando se inactiva, no hay espacios disponibles
+        } else {
+            throw new Exception("No se puede inactivar el espacio porque no todos los espacios están disponibles.");
+        }
     }
 
-    // Otros métodos getter y setter según sea necesario
+    // Getters y Setters
 
     public int getIdentificador() {
         return identificador;
@@ -38,7 +67,7 @@ public class Espacio {
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
-    
+
     public boolean isActivo() {
         return activo;
     }
@@ -57,6 +86,6 @@ public class Espacio {
 
     public void setEspaciosDisponibles(int espaciosDisponibles) {
         this.espaciosDisponibles = espaciosDisponibles;
-    }
-
+    } 
 }
+
