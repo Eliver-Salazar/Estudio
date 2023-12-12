@@ -34,11 +34,9 @@ public class Parqueo {
     }
     
     public RegistroParqueo[] getRegistros() {
-        int numRegistro = 0;
-        RegistroParqueo[] registroActivos = new RegistroParqueo[numRegistro];
-        Object registrosActivos = null;
+        RegistroParqueo[] registrosActivos = new RegistroParqueo[numRegistros];
         System.arraycopy(registros, 0, registrosActivos, 0, numRegistros);
-        return (RegistroParqueo[]) registrosActivos;
+        return registrosActivos;
     }
    
     private Espacio encontrarEspacioPorId(int idEspacio) {
@@ -94,8 +92,8 @@ public class Parqueo {
         }
     }
     
-    public RegistroParqueo crearRegistroParqueo(String numeroPlaca, Usuario cliente, LocalDateTime horaIngreso) {
-        RegistroParqueo nuevoRegistro = new RegistroParqueo(numeroPlaca, cliente, horaIngreso);
+    public RegistroParqueo crearRegistroParqueo(String numeroPlaca, Usuario cliente, Espacio espacio, LocalDateTime horaIngreso) {
+        RegistroParqueo nuevoRegistro = new RegistroParqueo(numeroPlaca, cliente, espacio, horaIngreso);
         JOptionPane.showMessageDialog(null, "Registro de parqueo creado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         return nuevoRegistro;
     }
@@ -136,6 +134,7 @@ public class Parqueo {
 
     public Map<LocalDate, Double> getGananciasPorDia() {
         return gananciasPorDia;
+        
     }
 }
 

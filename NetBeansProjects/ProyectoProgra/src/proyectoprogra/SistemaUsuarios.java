@@ -17,7 +17,8 @@ import javax.swing.JFrame;
 public class SistemaUsuarios extends JFrame {
     private Map<String, Usuario> usuarios;
     private Map<String, Espacio> espacios;
-
+    private Parqueo parqueo;
+    
     private JTextField loginUsuarioField;
     private JPasswordField loginPasswordField;
 
@@ -28,6 +29,7 @@ public class SistemaUsuarios extends JFrame {
 
         usuarios = new HashMap<>();
         espacios = new HashMap<>();
+        parqueo = new Parqueo(10);
 
         JPanel registroPanel = new JPanel();
         JPanel loginPanel = new JPanel();
@@ -197,7 +199,7 @@ public class SistemaUsuarios extends JFrame {
         String numeroPlaca = JOptionPane.showInputDialog(null, "Número de Placa:");
         String nombreUsuario = JOptionPane.showInputDialog(null, "Nombre de Usuario:");
         Usuario cliente = usuarios.get(nombreUsuario);
-        Espacio espacio = espacios.get("Espacio 1"); 
+        Espacio espacio = espacios.get("Espacio 1");
 
         if (cliente != null && espacio != null) {
             espacio.ocuparEspacio(cliente);
